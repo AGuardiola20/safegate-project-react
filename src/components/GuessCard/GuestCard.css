@@ -1,0 +1,59 @@
+@import "../../global-variables.css";
+
+h1,
+h2,
+h3,
+p,
+div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--primary-color);
+}
+
+.card_container {
+  flex: 1 1 250px;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: var(--card-box-shadow);
+  min-width: 250px;
+  max-width: 270px;
+  margin: 10px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.card_container:hover {
+  transform: scale(1.04);
+}
+
+.card_header {
+  display: flex;
+  justify-content: space-between;
+}
+.card_header h2,
+h3 {
+  color: var(--text-primary);
+}
+.card_header p {
+  color: var(--text-tertiary);
+}
+
+.card_info {
+  padding: 10px 0;
+}
+
+.card_info-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_item_title {
+  font-weight: bold;
+}
+.card_info-item p {
+  color: var(--text-secondary);
+}
