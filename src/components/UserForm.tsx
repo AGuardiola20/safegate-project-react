@@ -50,7 +50,7 @@ const UserForm = () => {
     <div className="card_container">
       <div>
         <div className="form_title">
-          <h1 className="login_title">Registro de Visitante</h1>
+          <h1 className="registerUser_title">Registro de Visitante</h1>
         </div>
       </div>
       <form className="form_container" onSubmit={handleSubmit}>
