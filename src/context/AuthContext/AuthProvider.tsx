@@ -1,12 +1,24 @@
-import React, { useState, ReactNode } from "react";
+import React, { useState, ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+
+  const savedAuthState = sessionStorage.getItem("isAuthenticated");
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
+    savedAuthState === "true"
+  );
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      sessionStorage.setItem("isAuthenticated", "true");
+    } else {
+      sessionStorage.removeItem("isAuthenticated");
+    }
+  }, [isAuthenticated]);
 
   const login = () => {
     setIsAuthenticated(true);
