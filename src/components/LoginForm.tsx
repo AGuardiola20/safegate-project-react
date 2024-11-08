@@ -7,15 +7,21 @@ const LoginForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!userName || !password) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
+
     console.log("Username:", userName);
     console.log("Password:", password);
     cleanInputs();
   };
 
-  const cleanInputs = () =>{
+  const cleanInputs = () => {
     setUserName("");
     setPassword("");
-  }
+  };
 
   return (
     <div className="card_container">

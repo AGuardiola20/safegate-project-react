@@ -10,10 +10,8 @@ body {
   border-radius: 5px;
   padding: 30px;
   box-shadow: var(--card-box-shadow);
-  /* min-width: 250px;*/
   max-width: 300px;
   margin: 10px;
-  transition: transform 0.3s;
 }
 
 .form_title {
