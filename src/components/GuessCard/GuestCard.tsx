@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { Guest } from "../../types/types";
 import "./GuestCard.css";
+import { Btn } from "../Btn/Btn";
 
 type GuestCardProps = {
   guest: Guest;
@@ -35,6 +36,10 @@ export const GuestCard = ({ guest }: GuestCardProps) => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  function handleSubmit() {
+    console.log("funciona");
+  }
+
   return (
     <>
       <div className="card_container" onClick={openModal}>
@@ -65,6 +70,7 @@ export const GuestCard = ({ guest }: GuestCardProps) => {
         <InfoItem title="Placa" value={guest.plate} />
         <InfoItem title="Hora de ingreso" value={time12hr} />
         <InfoItem title="Acompañantes" value={guest.companions} />
+        <Btn text="Ingresar" isPrimary onClick={handleSubmit} />
       </Modal>
     </>
   );
