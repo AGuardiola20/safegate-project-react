@@ -1,4 +1,4 @@
-@import "../global-variables.css";
+@import "../../global-variables.css";
 
 body {
   background-color: var(--primary-color);
@@ -40,12 +40,15 @@ body {
   border: solid;
   border-color: var(--primary-color);
   border-width: 1px;
+  transition: 0.2s ease-in;
+  color: var(--text-secondary);
 }
 
 .input_format:focus {
   border-color: var(--primary-color);
   border-width: 2px;
   outline: none;
+  transform: scale(1.04);
 }
 
 .submit_container {
