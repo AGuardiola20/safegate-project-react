@@ -14,7 +14,7 @@ const GUEST: Guest[] = [
     isMale: true,
     plate: "ABC123",
     idNumber: "123456789",
-    checkInTime: "2024-11-04T14:30:00",
+    checkInTime: "2024-11-08T14:30:00",
     companions: 2,
     houseNumber: "12A",
     isConfirmed: false,
@@ -25,7 +25,7 @@ const GUEST: Guest[] = [
     isMale: false,
     plate: "XYZ456",
     idNumber: "987654321",
-    checkInTime: "2024-11-04T15:00:00",
+    checkInTime: "2024-11-09T15:00:00",
     companions: 1,
     houseNumber: "8B",
     isConfirmed: true,
@@ -36,7 +36,7 @@ const GUEST: Guest[] = [
     isMale: false,
     plate: "LMN789",
     idNumber: "456789123",
-    checkInTime: "2024-11-04T16:15:00",
+    checkInTime: "2024-11-10T16:15:00",
     companions: 0,
     houseNumber: "5C",
     isConfirmed: true,
@@ -47,7 +47,7 @@ const GUEST: Guest[] = [
     isMale: true,
     plate: "JKL012",
     idNumber: "321654987",
-    checkInTime: "2024-11-04T17:45:00",
+    checkInTime: "2024-11-08T17:45:00",
     companions: 3,
     houseNumber: "3D",
     isConfirmed: false,
@@ -58,7 +58,7 @@ const GUEST: Guest[] = [
     isMale: false,
     plate: "PQR345",
     idNumber: "654321789",
-    checkInTime: "2024-11-04T18:30:00",
+    checkInTime: "2024-11-09T18:30:00",
     companions: 1,
     houseNumber: "9E",
     isConfirmed: true,
@@ -91,12 +91,11 @@ export const AdminScreen = () => {
   });
 
   const today = new Date();
-  const options: Intl.DateTimeFormatOptions = {
+  const formattedDate = today.toLocaleDateString("es-ES", {
     day: "numeric",
     month: "long",
     year: "numeric",
-  };
-  const formattedDate = today.toLocaleDateString("es-ES", options);
+  });
 
   if (!isAuthenticated) {
     return <p>No tienes acceso a esta página.</p>;
