@@ -1,6 +1,9 @@
 :root {
   --primary-color: #252eff;
+  --primary-color_hover: #2228d4;
   --secondary-color: #6066ff;
+  --secondary-color_hover: #484cbe;
+
   --font-family: "Catamaran", sans-serif;
   --text-primary: rgba(0, 0, 0, 0.8);
   --text-secondary: #505050;
