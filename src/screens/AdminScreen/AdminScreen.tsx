@@ -1,5 +1,6 @@
-import { GuestCard } from "../components/GuessCard/GuestCard";
-import { Guest } from "../types/types";
+import { GuestCard } from "../../components/GuessCard/GuestCard";
+import { useAuth } from "../../context/AuthContext/AuthProvider";
+import { Guest } from "../../types/types";
 import "./AdminScreen.css";
 
 // TODO: Cambiar esto por data funcional
@@ -57,11 +58,21 @@ const GUEST: Guest[] = [
 ];
 
 export const AdminScreen = () => {
+  const { logout, isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <p>No tienes acceso a esta página.</p>;
+  }
+
+  console.log(isAuthenticated);
   return (
-    <div className="guestCardsContainer">
-      <GuestCard guest={GUEST[0]} />
-      <GuestCard guest={GUEST[1]} />
-      <GuestCard guest={GUEST[2]} />
-    </div>
+    <>
+      <div className="guestCardsContainer">
+        <GuestCard guest={GUEST[0]} />
+        <GuestCard guest={GUEST[1]} />
+        <GuestCard guest={GUEST[2]} />
+      </div>
+      <button onClick={logout}>Cerrar sesión</button>
+    </>
   );
 };
