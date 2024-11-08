@@ -1,5 +1,5 @@
 import { GuestCard } from "../../components/GuessCard/GuestCard";
-import { useAuth } from "../../context/AuthContext/AuthProvider";
+import { useAuth } from "../../hooks/useAuth";
 import { Guest } from "../../types/types";
 import "./AdminScreen.css";
 
@@ -64,7 +64,6 @@ export const AdminScreen = () => {
     return <p>No tienes acceso a esta página.</p>;
   }
 
-  console.log(isAuthenticated);
   return (
     <>
       <div className="guestCardsContainer">

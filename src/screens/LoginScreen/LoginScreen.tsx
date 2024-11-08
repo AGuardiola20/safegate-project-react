@@ -1,6 +1,5 @@
-// LoginScreen.tsx
 import React from "react";
-import { useAuth } from "../../context/AuthContext/AuthProvider";
+import { useAuth } from "../../hooks/useAuth";
 
 const LoginScreen: React.FC = () => {
   const { login } = useAuth();
