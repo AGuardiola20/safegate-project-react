@@ -6,6 +6,8 @@
   --text-secondary: #505050;
   --text-tertiary: #909090;
 
+  --bg-light: #e4e4e4;
+
   --card-bg: #fff;
   --card-box-shadow: 4px 5px 12.2px rgba(0, 0, 0, 0.25);
 }
