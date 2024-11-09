@@ -6,6 +6,7 @@ import { Btn } from "../Btn/Btn";
 
 type GuestCardProps = {
   guest: Guest;
+  onConfirmGuest: (idNumber: string) => void;
 };
 
 const formatCheckInTime = (checkInTime: string): string => {
@@ -29,32 +30,32 @@ const InfoItem = ({
   </div>
 );
 
-export const GuestCard = ({ guest }: GuestCardProps) => {
+export const GuestCard = ({ guest, onConfirmGuest }: GuestCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const time12hr = formatCheckInTime(guest.checkInTime);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  function handleSubmit() {
-    console.log("funciona");
-  }
+  const handleSubmit = () => {
+    onConfirmGuest(guest.idNumber);
+    closeModal();
+  };
 
   return (
     <>
-      <div className="card_container" onClick={openModal}>
+      <div
+        className={
+          guest.isConfirmed ? "card_container card_confirmed" : "card_container"
+        }
+        onClick={openModal}
+      >
         <div className="card_header">
           <div>
             <h2>{guest.name}</h2>
             <p>{`${guest.age} años / ${guest.isMale ? "Hombre" : "Mujer"}`}</p>
           </div>
           <h3>{guest.houseNumber}</h3>
-        </div>
-        <div className="card_info">
-          <InfoItem title="Cédula" value={guest.idNumber} />
-          <InfoItem title="Placa" value={guest.plate} />
-          <InfoItem title="Hora de ingreso" value={time12hr} />
-          <InfoItem title="Acompañantes" value={guest.companions} />
         </div>
       </div>
 

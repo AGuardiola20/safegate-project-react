@@ -7,4 +7,5 @@ export interface Guest {
   checkInTime: string;
   companions: number;
   houseNumber: string;
+  isConfirmed: boolean;
 }
