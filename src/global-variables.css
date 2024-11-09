@@ -3,11 +3,17 @@
   --primary-color_hover: #2228d4;
   --secondary-color: #6066ff;
   --secondary-color_hover: #484cbe;
+  --success-color: #59c95d;
+  --error-color: #f44336;
 
   --font-family: "Catamaran", sans-serif;
   --text-primary: rgba(0, 0, 0, 0.8);
   --text-secondary: #505050;
   --text-tertiary: #909090;
+
+  --font-family: "Catamaran", sans-serif;
+  --text-primary_dark: #f3f3f3;
+  --text-tertiary_dark: #eee;
 
   --bg-light: #e4e4e4;
 

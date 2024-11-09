@@ -133,3 +133,14 @@ h3 {
     transform: translateY(0);
   }
 }
+
+.card_confirmed {
+  background-color: var(--success-color);
+}
+.card_confirmed h2,
+.card_confirmed h3 {
+  color: var(--text-primary_dark);
+}
+.card_confirmed p {
+  color: var(--text-tertiary_dark);
+}

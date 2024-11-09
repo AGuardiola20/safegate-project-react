@@ -42,19 +42,18 @@ export const GuestCard = ({ guest }: GuestCardProps) => {
 
   return (
     <>
-      <div className="card_container" onClick={openModal}>
+      <div
+        className={
+          guest.isConfirmed ? "card_container card_confirmed" : "card_container"
+        }
+        onClick={openModal}
+      >
         <div className="card_header">
           <div>
             <h2>{guest.name}</h2>
             <p>{`${guest.age} años / ${guest.isMale ? "Hombre" : "Mujer"}`}</p>
           </div>
           <h3>{guest.houseNumber}</h3>
-        </div>
-        <div className="card_info">
-          <InfoItem title="Cédula" value={guest.idNumber} />
-          <InfoItem title="Placa" value={guest.plate} />
-          <InfoItem title="Hora de ingreso" value={time12hr} />
-          <InfoItem title="Acompañantes" value={guest.companions} />
         </div>
       </div>
 

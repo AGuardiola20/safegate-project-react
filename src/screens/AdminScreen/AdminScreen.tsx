@@ -17,6 +17,7 @@ const GUEST: Guest[] = [
     checkInTime: "2024-11-04T14:30:00",
     companions: 2,
     houseNumber: "12A",
+    isConfirmed: false,
   },
   {
     name: "Jane Smith",
@@ -27,6 +28,7 @@ const GUEST: Guest[] = [
     checkInTime: "2024-11-04T15:00:00",
     companions: 1,
     houseNumber: "8B",
+    isConfirmed: true,
   },
   {
     name: "Alice Johnson",
@@ -37,6 +39,7 @@ const GUEST: Guest[] = [
     checkInTime: "2024-11-04T16:15:00",
     companions: 0,
     houseNumber: "5C",
+    isConfirmed: true,
   },
   {
     name: "Bob Brown",
@@ -47,6 +50,7 @@ const GUEST: Guest[] = [
     checkInTime: "2024-11-04T17:45:00",
     companions: 3,
     houseNumber: "3D",
+    isConfirmed: false,
   },
   {
     name: "Emma Davis",
@@ -57,6 +61,7 @@ const GUEST: Guest[] = [
     checkInTime: "2024-11-04T18:30:00",
     companions: 1,
     houseNumber: "9E",
+    isConfirmed: true,
   },
 ];
 
