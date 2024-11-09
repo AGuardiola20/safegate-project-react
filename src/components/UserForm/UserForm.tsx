@@ -124,12 +124,7 @@ const UserForm = () => {
           onChange={handleChange}
         />
         <div className="submit_container">
-            {/* <button className="submit_input" type="submit">Registrar Visita</button> */}
-          {/* <input
-            className="submit_input"
-            type="submit"
-            value="Inicio de Sesion"
-          /> */}
+
         </div>
       </form>
     </div>
