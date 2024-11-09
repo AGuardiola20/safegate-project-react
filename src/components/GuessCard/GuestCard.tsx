@@ -6,6 +6,7 @@ import { Btn } from "../Btn/Btn";
 
 type GuestCardProps = {
   guest: Guest;
+  onConfirmGuest: (idNumber: string) => void;
 };
 
 const formatCheckInTime = (checkInTime: string): string => {
@@ -29,16 +30,17 @@ const InfoItem = ({
   </div>
 );
 
-export const GuestCard = ({ guest }: GuestCardProps) => {
+export const GuestCard = ({ guest, onConfirmGuest }: GuestCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const time12hr = formatCheckInTime(guest.checkInTime);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  function handleSubmit() {
-    console.log("funciona");
-  }
+  const handleSubmit = () => {
+    onConfirmGuest(guest.idNumber);
+    closeModal();
+  };
 
   return (
     <>

@@ -67,13 +67,22 @@ const GUEST: Guest[] = [
 
 export const AdminScreen = () => {
   const { logout, isAuthenticated } = useAuth();
-
+  const [guests, setGuests] = useState(GUEST);
   const [searchQuery, setSearchQuery] = useState("");
+
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
-  const filteredGuests = GUEST.filter((guest) => {
+  const handleConfirmGuest = (idNumber: string) => {
+    setGuests((prevGuests) =>
+      prevGuests.map((guest) =>
+        guest.idNumber === idNumber ? { ...guest, isConfirmed: true } : guest
+      )
+    );
+  };
+
+  const filteredGuests = guests.filter((guest) => {
     return (
       guest.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       guest.plate.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -113,7 +122,11 @@ export const AdminScreen = () => {
       <div className="guestCardsContainer">
         {filteredGuests.length > 0 ? (
           filteredGuests.map((guest) => (
-            <GuestCard key={guest.idNumber} guest={guest} />
+            <GuestCard
+              key={guest.idNumber}
+              guest={guest}
+              onConfirmGuest={handleConfirmGuest}
+            />
           ))
         ) : (
           <p>No se encontraron invitados.</p>
