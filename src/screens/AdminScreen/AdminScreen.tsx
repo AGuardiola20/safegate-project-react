@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GuestCard } from "../../components/GuessCard/GuestCard";
 import { useAuth } from "../../hooks/useAuth";
 import { Guest } from "../../types/types";
@@ -14,7 +14,7 @@ const GUEST: Guest[] = [
     isMale: true,
     plate: "ABC123",
     idNumber: "123456789",
-    checkInTime: "2024-11-08T14:30:00",
+    checkInTime: "2024-11-09T14:30:00",
     companions: 2,
     houseNumber: "12A",
     isConfirmed: false,
@@ -67,8 +67,30 @@ const GUEST: Guest[] = [
 
 export const AdminScreen = () => {
   const { logout, isAuthenticated } = useAuth();
-  const [guests, setGuests] = useState(GUEST);
+  const [guests, setGuests] = useState<Guest[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("es-ES", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  useEffect(() => {
+    const filteredGuests = GUEST.filter((guest) => {
+      const guestDate = new Date(guest.checkInTime).toLocaleDateString(
+        "es-ES",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }
+      );
+      return guestDate === formattedDate;
+    });
+    setGuests(filteredGuests);
+  }, [formattedDate]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -88,13 +110,6 @@ export const AdminScreen = () => {
       guest.plate.toLowerCase().includes(searchQuery.toLowerCase()) ||
       guest.houseNumber.toLowerCase().includes(searchQuery.toLowerCase())
     );
-  });
-
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("es-ES", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
   });
 
   if (!isAuthenticated) {
