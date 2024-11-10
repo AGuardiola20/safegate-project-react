@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./LoginForm.css";
+import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const [userName, setUserName] = useState<string>("");
@@ -24,15 +24,15 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="card_container">
+    <div className={styles.cardContainer}>
       <div>
-        <div className="form_title">
-          <h1 className="login_title">Inicio de Sesion</h1>
+        <div className={styles.formTitle}>
+          <h1 className={styles.loginTitle}>Inicio de Sesion</h1>
         </div>
       </div>
-      <form className="form_container" onSubmit={handleSubmit}>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
         <input
-          className="input_format"
+          className={styles.inputFormat}
           placeholder="Nombre de Usuario"
           type="text"
           name="userName"
@@ -40,16 +40,16 @@ const LoginForm = () => {
           onChange={(e) => setUserName(e.target.value)}
         />
         <input
-          className="input_format"
+          className={styles.inputFormat}
           placeholder="Contraseña"
           type="password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className="submit_container">
+        <div className={styles.submitContainer}>
           <input
-            className="submit_input"
+            className={styles.submitInput}
             type="submit"
             value="Inicio de Sesion"
           />

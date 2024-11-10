@@ -1,6 +1,6 @@
 @import "../../global-variables.css";
 
-.btn-container {
+.btnContainer {
   background-color: var(--primary-color);
   border-radius: 5px;
   border: none;
@@ -12,13 +12,13 @@
   cursor: pointer;
   transition: 0.1s ease-in;
 }
-.btn-container:hover {
+.btnContainer:hover {
   background-color: var(--primary-color_hover);
 }
 
-.btn-secondary {
+.btnSecondary {
   background-color: var(--secondary-color);
 }
-.btn-secondary:hover {
+.btnSecondary:hover {
   background-color: var(--secondary-color_hover);
 }

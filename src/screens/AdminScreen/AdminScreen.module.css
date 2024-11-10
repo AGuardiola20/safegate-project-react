@@ -1,28 +1,12 @@
 @import "../../global-variables.css";
 
-body {
-  background-color: var(--bg-light);
-  padding: 50px;
-}
-img {
-  height: 100px;
-  cursor: pointer;
-  transition: 0.2s ease-in;
-}
-img:hover {
-  transform: scale(1.1);
-}
-h3 {
-  font-size: 25px;
-  text-align: center;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--text-primary);
 }
+
 .header h1 {
   font-size: 110px;
   line-height: 1.2;
@@ -35,9 +19,15 @@ h3 {
     right: 20px;
     z-index: 1000;
   }
+
   .header {
     flex-direction: column;
   }
+}
+
+.date {
+  font-size: 25px;
+  text-align: center;
 }
 
 .searchInput {
@@ -71,8 +61,18 @@ h3 {
   .guestCardsContainer {
     justify-content: center;
   }
-  .guestCardsContainer > .card_container {
+
+  .guestCardsContainer > .cardContainer {
     flex: 0 0 calc(50% - 20px);
     max-width: calc(50% - 20px);
   }
+}
+
+.img {
+  height: 100px;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+.img:hover {
+  transform: scale(1.1);
 }

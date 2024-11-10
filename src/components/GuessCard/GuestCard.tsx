@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import { Guest } from "../../types/types";
-import "./GuestCard.css";
 import { Btn } from "../Btn/Btn";
+import styles from "./GuestCard.module.css";
 
 type GuestCardProps = {
   guest: Guest;
@@ -11,8 +11,8 @@ type GuestCardProps = {
 
 const formatCheckInTime = (checkInTime: string): string => {
   const [hour, minute] = checkInTime.split("T")[1].split(":");
-  let hourNumber: number = parseInt(hour, 10);
-  const ampm: string = hourNumber >= 12 ? "PM" : "AM";
+  let hourNumber = parseInt(hour, 10);
+  const ampm = hourNumber >= 12 ? "PM" : "AM";
   hourNumber = hourNumber % 12 || 12;
   return `${hourNumber}:${minute} ${ampm}`;
 };
@@ -24,8 +24,8 @@ const InfoItem = ({
   title: string;
   value: string | number;
 }) => (
-  <div className="card_info-item">
-    <p className="card_item_title">{title}:</p>
+  <div className={styles.cardInfoItem}>
+    <p className={styles.cardItemTitle}>{title}:</p>
     <p>{value}</p>
   </div>
 );
@@ -46,11 +46,13 @@ export const GuestCard = ({ guest, onConfirmGuest }: GuestCardProps) => {
     <>
       <div
         className={
-          guest.isConfirmed ? "card_container card_confirmed" : "card_container"
+          guest.isConfirmed
+            ? `${styles.cardContainer} ${styles.cardConfirmed}`
+            : styles.cardContainer
         }
         onClick={openModal}
       >
-        <div className="card_header">
+        <div className={styles.cardHeader}>
           <div>
             <h2>{guest.name}</h2>
             <p>{`${guest.age} años / ${guest.isMale ? "Hombre" : "Mujer"}`}</p>
@@ -63,8 +65,8 @@ export const GuestCard = ({ guest, onConfirmGuest }: GuestCardProps) => {
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Información del Invitado"
-        className="modal_content"
-        overlayClassName="modal_overlay"
+        className={styles.modalContent}
+        overlayClassName={styles.modalOverlay}
       >
         <h2>Información detallada de {guest.name}</h2>
         <InfoItem title="Cédula" value={guest.idNumber} />

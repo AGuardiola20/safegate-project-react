@@ -1,19 +1,6 @@
 @import "../../global-variables.css";
 
-h1,
-h2,
-h3,
-p,
-div {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: var(--primary-color);
-}
-
-.card_container {
+.cardContainer {
   flex: 1 1 250px;
   background-color: var(--card-bg);
   border-radius: 10px;
@@ -26,38 +13,38 @@ body {
   cursor: pointer;
 }
 
-.card_container:hover {
+.cardContainer:hover {
   transform: scale(1.04);
 }
 
-.card_header {
+.cardHeader {
   display: flex;
   justify-content: space-between;
 }
-.card_header h2,
+.cardHeader h2,
 h3 {
   color: var(--text-primary);
 }
-.card_header p {
+.cardHeader p {
   color: var(--text-tertiary);
 }
 
-.card_info {
+.cardInfo {
   padding: 10px 0;
 }
 
-.card_info-item {
+.cardInfoItem {
   display: flex;
   justify-content: space-between;
 }
 
-.card_item_title {
+.cardItemTitle {
   font-weight: bold;
 }
-.card_info-item p {
+.cardInfoItem p {
   color: var(--text-secondary);
 }
-.modal_overlay {
+.modalOverlay {
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
@@ -71,7 +58,7 @@ h3 {
   z-index: 1000;
 }
 
-.modal_content {
+.modalContent {
   margin: 0 20px;
   background-color: var(--card-bg);
   color: var(--text-primary);
@@ -85,30 +72,30 @@ h3 {
   transform: translateY(-20px);
 }
 
-.modal_content h2 {
+.modalContent h2 {
   font-size: 1.8rem;
   color: var(--secondary-color);
   margin-bottom: 15px;
   text-align: center;
 }
 
-.modal_content .modal_info {
+.modalContent .modalInfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin: 15px 0;
 }
 
-.modal_content .modal_info div {
+.modalContent .modalInfo div {
   color: var(--text-secondary);
 }
 
-.modal_content .modal_info-title {
+.modalContent .modalInfoTitle {
   font-weight: bold;
   color: var(--text-primary);
 }
 
-.modal_close-button {
+.modalCloseButton {
   background-color: var(--primary-color);
   color: var(--card-bg);
   border: none;
@@ -123,7 +110,7 @@ h3 {
   transition: background-color 0.3s ease;
 }
 
-.modal_close-button:hover {
+.modalCloseButton:hover {
   background-color: var(--secondary-color);
 }
 
@@ -134,13 +121,13 @@ h3 {
   }
 }
 
-.card_confirmed {
+.cardConfirmed {
   background-color: var(--success-color);
 }
-.card_confirmed h2,
-.card_confirmed h3 {
+.cardConfirmed h2,
+.cardConfirmed h3 {
   color: var(--text-primary_dark);
 }
-.card_confirmed p {
+.cardConfirmed p {
   color: var(--text-tertiary_dark);
 }

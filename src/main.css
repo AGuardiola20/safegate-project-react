@@ -2,4 +2,14 @@
 
 body {
   font-family: var(--font-family);
+  background-color: var(--bg-light);
+  padding: 50px;
+}
+h1,
+h2,
+h3,
+p,
+div {
+  margin: 0;
+  padding: 0;
 }
