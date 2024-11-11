@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./UserForm.css";
+import styles from "./UserForm.module.css";
 
 const UserForm = () => {
   const [formData, setFormData] = useState({
@@ -47,15 +47,15 @@ const UserForm = () => {
   };
 
   return (
-    <div className="card_container">
+    <div className={styles.cardContainer}>
       <div>
-        <div className="form_title">
-          <h1 className="registerUser_title">Registro de Visitante</h1>
+        <div className={styles.formTitle}>
+          <h1 className={styles.registerUserTitle}>Registro de Visitante</h1>
         </div>
       </div>
-      <form className="form_container" onSubmit={handleSubmit}>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
         <input
-          className="input_format"
+          className={styles.inputFormat}
           placeholder="Nombre"
           type="text"
           name="firstName"
@@ -63,7 +63,7 @@ const UserForm = () => {
           onChange={handleChange}
         />
         <input
-          className="input_format"
+          className={styles.inputFormat}
           placeholder="Apellido"
           type="text"
           name="lastName"
@@ -71,7 +71,7 @@ const UserForm = () => {
           onChange={handleChange}
         />
         <input
-          className="input_format"
+          className={styles.inputFormat}
           placeholder="Cedula"
           type="number"
           name="id"
@@ -80,7 +80,7 @@ const UserForm = () => {
           onChange={handleChange}
         />
         <input
-          className="input_format"
+          className={styles.inputFormat}
           placeholder="Edad"
           type="number"
           name="age"
@@ -90,7 +90,7 @@ const UserForm = () => {
         <select
           name="genre"
           id="genre"
-          className="input_selection_format"
+          className={styles.inputSelectionFormat}
           value={formData.genre}
           onChange={handleChange}
         >
@@ -100,7 +100,7 @@ const UserForm = () => {
           <option value="Otro">Otro</option>
         </select>
         <input
-          className="input_format"
+          className={styles.inputFormat}
           placeholder="Placa Vehiculo"
           type="text"
           name="plate"
@@ -108,7 +108,7 @@ const UserForm = () => {
           onChange={handleChange}
         />
         <input
-          className="input_format"
+          className={styles.inputFormat}
           placeholder="Cantidad Acompañantes"
           type="number"
           name="companions"
@@ -117,15 +117,13 @@ const UserForm = () => {
         />
         <label htmlFor="checkInTime">Hora Ingreso</label>
         <input
-          className="input_format"
+          className={styles.inputFormat}
           type="time"
           name="checkInTime"
           value={formData.checkInTime}
           onChange={handleChange}
         />
-        <div className="submit_container">
-
-        </div>
+        <div className={styles.submitContainer}></div>
       </form>
     </div>
   );

@@ -1,0 +1,129 @@
+@import "../../global-variables.css";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.header h1 {
+  font-size: 110px;
+  line-height: 1.2;
+}
+
+@media (max-width: 870px) {
+  .userImg {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .header {
+    flex-direction: column;
+  }
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-box-shadow);
+  width: fit-content;
+  margin: auto;
+}
+
+.date {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.icon {
+  font-size: 1.2rem;
+  color: var(--text-tertiary);
+  cursor: pointer;
+}
+
+.searchInput {
+  border-radius: 15px;
+  padding: 10px;
+  margin: 20px 0;
+  width: 100%;
+  border: solid;
+  border-color: var(--primary-color);
+  border-width: 1px;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.searchInput:focus {
+  border-color: var(--primary-color);
+  border-width: 2px;
+  outline: none;
+}
+
+.guestCardsContainer {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .guestCardsContainer {
+    justify-content: center;
+  }
+
+  .guestCardsContainer > .cardContainer {
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+
+.img {
+  height: 100px;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+.img:hover {
+  transform: scale(1.1);
+}
+
+.calendarContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  background-color: white;
+  box-shadow: var(--card-box-shadow);
+  border-radius: 8px;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-semitransparent);
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay.hidden {
+  display: none;
+}

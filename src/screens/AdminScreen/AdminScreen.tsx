@@ -4,7 +4,10 @@ import { useAuth } from "../../hooks/useAuth";
 import { Guest } from "../../types/types";
 import LogoImg from "../../assets/imgs/logoTemp.png";
 import UserImg from "../../assets/imgs/UserImg.png";
-import "./AdminScreen.css";
+import styles from "./AdminScreen.module.css";
+import { IoIosArrowDown } from "react-icons/io";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 // TODO: Cambiar esto por data funcional
 const GUEST: Guest[] = [
@@ -553,13 +556,21 @@ export const AdminScreen = () => {
   const { logout, isAuthenticated } = useAuth();
   const [guests, setGuests] = useState<Guest[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | [Date, Date] | null>(
+    new Date()
+  );
 
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("es-ES", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const formattedDate = selectedDate
+    ? (Array.isArray(selectedDate)
+        ? selectedDate[0]
+        : selectedDate
+      ).toLocaleDateString("es-ES", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : "";
 
   useEffect(() => {
     const filteredGuests = GUEST.filter((guest) => {
@@ -596,28 +607,64 @@ export const AdminScreen = () => {
     );
   });
 
+  const handleDateClick = () => {
+    setShowCalendar((prev) => !prev);
+  };
+
+  const handleDateChange = (date: Date | [Date, Date] | null) => {
+    setSelectedDate(date);
+    setShowCalendar(false);
+  };
+
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      setShowCalendar(false);
+    }
+  };
+
   if (!isAuthenticated) {
     return <p>No tienes acceso a esta página.</p>;
   }
 
   return (
     <>
-      <div className="header">
-        <img className="logo" src={LogoImg} alt={`${LogoImg}-img`} />
+      <div className={styles.header}>
+        <img
+          className={`${styles.logo} ${styles.img}`}
+          src={LogoImg}
+          alt="Logo"
+        />
         <h1>SafeGate</h1>
-        <img className="userImg" src={UserImg} alt={`${UserImg}-img`} />
+        <img
+          className={`${styles.userImg} ${styles.img}`}
+          src={UserImg}
+          alt="User"
+        />
       </div>
-      <h3>{formattedDate}</h3>
+      <div className={styles.dateContainer} onClick={handleDateClick}>
+        <h3 className={styles.date}>{formattedDate}</h3>
+        <div className={styles.icon}>
+          <IoIosArrowDown />
+        </div>
+      </div>
+
+      {showCalendar && (
+        <div className={styles.overlay} onClick={handleOverlayClick}>
+          <div className={styles.calendarContainer}>
+            <Calendar onChange={handleDateChange} value={selectedDate} />
+          </div>
+        </div>
+      )}
 
       <input
         type="text"
         placeholder="Buscar invitado..."
         value={searchQuery}
         onChange={handleSearchChange}
-        className="searchInput"
+        className={styles.searchInput}
       />
 
-      <div className="guestCardsContainer">
+      <div className={styles.guestCardsContainer}>
         {filteredGuests.length > 0 ? (
           filteredGuests.map((guest) => (
             <GuestCard

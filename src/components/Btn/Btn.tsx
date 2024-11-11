@@ -1,5 +1,5 @@
 import React from "react";
-import "./Btn.css";
+import styles from "./Btn.module.css";
 
 type BtnProps = {
   text: string;
@@ -11,7 +11,9 @@ type BtnProps = {
 export const Btn = ({ text, isPrimary, onClick, style }: BtnProps) => {
   return (
     <button
-      className={isPrimary ? "btn-container" : "btn-container btn-secondary"}
+      className={`${styles["btnContainer"]} ${
+        !isPrimary && styles["btnSecondary"]
+      }`}
       style={style}
       onClick={onClick}
     >

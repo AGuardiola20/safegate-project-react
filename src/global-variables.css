@@ -19,4 +19,6 @@
 
   --card-bg: #fff;
   --card-box-shadow: 4px 5px 12.2px rgba(0, 0, 0, 0.25);
+
+  --bg-semitransparent: rgba(0, 0, 0, 0.5);
 }

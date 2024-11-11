@@ -1,40 +1,34 @@
 @import "../../global-variables.css";
 
-body {
-  background-color: var(--primary-color);
-}
-
-.card_container {
+.cardContainer {
   flex: 1 1 250px;
   background-color: var(--card-bg);
   border-radius: 5px;
   padding: 30px;
   box-shadow: var(--card-box-shadow);
-  /* min-width: 250px;*/
   max-width: 300px;
   margin: 10px;
-  transition: transform 0.3s;
 }
 
-.form_title {
+.formTitle {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 45px;
 }
 
-.registerUser_title {
+.loginTitle {
   color: var(--primary-color);
 }
 
-.form_container {
+.formContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.input_format {
+.inputFormat {
   border-radius: 15px;
   padding: 5px;
   margin-bottom: 20px;
@@ -42,33 +36,18 @@ body {
   border: solid;
   border-color: var(--primary-color);
   border-width: 1px;
+  transition: 0.2s ease-in;
+  color: var(--text-secondary);
 }
 
-.input_selection_format {
-    border-radius: 15px;
-    padding: 5px;
-    margin-bottom: 20px;
-    min-width: 285px;
-    border: solid;
-    border-color: var(--primary-color);
-    border-width: 1px;
-    color: gray;
-  }
-
-.input_format:focus {
+.inputFormat:focus {
   border-color: var(--primary-color);
   border-width: 2px;
   outline: none;
-  color: gray;
+  transform: scale(1.04);
 }
 
-.input_selection_format:focus {
-    border-color: var(--primary-color);
-    border-width: 2px;
-    outline: none;
-  }
-
-.submit_container {
+.submitContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,7 +55,7 @@ body {
   margin-top: 35px;
 }
 
-.submit_input {
+.submitInput {
   border-radius: 15px;
   padding: 5px;
   margin-bottom: 20px;
