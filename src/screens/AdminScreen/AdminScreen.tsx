@@ -5,6 +5,7 @@ import { Guest } from "../../types/types";
 import LogoImg from "../../assets/imgs/logoTemp.png";
 import UserImg from "../../assets/imgs/UserImg.png";
 import styles from "./AdminScreen.module.css";
+import { IoIosArrowDown } from "react-icons/io";
 
 // TODO: Cambiar esto por data funcional
 const GUEST: Guest[] = [
@@ -131,7 +132,12 @@ export const AdminScreen = () => {
           alt={`${UserImg}-img`}
         />
       </div>
-      <h3 className={styles.date}>{formattedDate}</h3>
+      <div className={styles.dateContainer}>
+        <h3 className={styles.date}>{formattedDate}</h3>
+        <div className={styles.icon}>
+          <IoIosArrowDown />
+        </div>
+      </div>
 
       <input
         type="text"
