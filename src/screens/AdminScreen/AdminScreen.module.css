@@ -97,3 +97,33 @@
 .img:hover {
   transform: scale(1.1);
 }
+
+.calendarContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  background-color: white;
+  box-shadow: var(--card-box-shadow);
+  border-radius: 8px;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-semitransparent);
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay.hidden {
+  display: none;
+}
