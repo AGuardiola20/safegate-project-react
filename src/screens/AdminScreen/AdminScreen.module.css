@@ -1,5 +1,8 @@
 @import "../../global-variables.css";
 
+.container {
+  padding: var(--border-padding);
+}
 .header {
   display: flex;
   justify-content: space-between;

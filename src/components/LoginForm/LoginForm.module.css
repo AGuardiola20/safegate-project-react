@@ -63,4 +63,5 @@
   background-color: var(--primary-color);
   color: var(--card-bg);
   border: none;
+  cursor: pointer;
 }

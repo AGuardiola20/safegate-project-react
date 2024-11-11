@@ -12,10 +12,8 @@ const LoginScreen: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <LoginForm />
-      <button onClick={handleLogin}>Iniciar sesión</button>
+    <div className={styles.container}>
+      <LoginForm loginFunction={handleLogin} />
     </div>
   );
 };

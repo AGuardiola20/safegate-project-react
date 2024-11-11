@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
 
-const LoginForm = () => {
+type LoginFormProps = {
+  loginFunction: () => void;
+};
+
+const LoginForm = ({ loginFunction }: LoginFormProps) => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -15,6 +19,7 @@ const LoginForm = () => {
 
     console.log("Username:", userName);
     console.log("Password:", password);
+    loginFunction();
     cleanInputs();
   };
 

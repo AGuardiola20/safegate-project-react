@@ -627,7 +627,7 @@ export const AdminScreen = () => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.header}>
         <img
           className={`${styles.logo} ${styles.img}`}
@@ -679,6 +679,6 @@ export const AdminScreen = () => {
       </div>
 
       <button onClick={logout}>Cerrar sesión</button>
-    </>
+    </div>
   );
 };
