@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
 
 type LoginFormProps = {
-  loginFunction: () => void;
+  loginFunction: (username: string) => void;
 };
 
 const LoginForm = ({ loginFunction }: LoginFormProps) => {
@@ -18,8 +18,7 @@ const LoginForm = ({ loginFunction }: LoginFormProps) => {
     }
 
     console.log("Username:", userName);
-    console.log("Password:", password);
-    loginFunction();
+    loginFunction(userName);
     cleanInputs();
   };
 
