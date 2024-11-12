@@ -16,7 +16,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 45px;
 }
 
 .registerUserTitle {
@@ -72,4 +71,7 @@
   background-color: var(--primary-color);
   color: var(--card-bg);
   border: none;
+}
+.favoriteBtn {
+  margin: 20px 0;
 }

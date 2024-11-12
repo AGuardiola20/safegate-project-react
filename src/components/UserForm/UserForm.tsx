@@ -49,12 +49,19 @@ const UserForm = () => {
     });
   };
 
+  function openFav() {
+    console.log("favoritos abiertos");
+  }
+
   return (
     <div className={styles.cardContainer}>
       <div>
         <div className={styles.formTitle}>
           <h1 className={styles.registerUserTitle}>Registro de Visitante</h1>
         </div>
+      </div>
+      <div className={styles.favoriteBtn}>
+        <Btn text="Favoritos" isPrimary={false} onClick={openFav} />
       </div>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <input
