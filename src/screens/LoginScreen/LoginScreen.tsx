@@ -6,9 +6,13 @@ import styles from "./LoginScreen.module.css";
 const LoginScreen: React.FC = () => {
   const { login } = useAuth();
 
-  const handleLogin = () => {
+  const handleLogin = (username: string) => {
     // TODO: Aqui se agrega la logica de validación
-    login();
+    if (username === "admin") {
+      login("/admin");
+    } else {
+      login("/user");
+    }
   };
 
   return (

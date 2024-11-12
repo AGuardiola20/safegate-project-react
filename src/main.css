@@ -3,7 +3,10 @@
 body {
   font-family: var(--font-family);
   background-color: var(--bg-light);
+  height: 100%;
+  margin: 0;
 }
+
 h1,
 h2,
 h3,

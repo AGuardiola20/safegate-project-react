@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./UserForm.module.css";
+import { Btn } from "../Btn/Btn";
 
 const UserForm = () => {
   const [formData, setFormData] = useState({
@@ -23,12 +24,14 @@ const UserForm = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+
     if (Object.values(formData).some((field) => field === "")) {
       alert("Por favor, complete todos los campos.");
       return;
     }
+
     console.log("Datos del formulario:", formData);
     cleanInputs();
   };
@@ -46,12 +49,19 @@ const UserForm = () => {
     });
   };
 
+  function openFav() {
+    console.log("favoritos abiertos");
+  }
+
   return (
     <div className={styles.cardContainer}>
       <div>
         <div className={styles.formTitle}>
           <h1 className={styles.registerUserTitle}>Registro de Visitante</h1>
         </div>
+      </div>
+      <div className={styles.favoriteBtn}>
+        <Btn text="Favoritos" isPrimary={false} onClick={openFav} />
       </div>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <input
@@ -123,7 +133,7 @@ const UserForm = () => {
           value={formData.checkInTime}
           onChange={handleChange}
         />
-        <div className={styles.submitContainer}></div>
+        <Btn text="Ingresar" isPrimary onClick={() => handleSubmit()} />
       </form>
     </div>
   );
