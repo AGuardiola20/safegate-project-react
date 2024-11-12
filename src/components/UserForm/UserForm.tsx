@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./UserForm.module.css";
+import { Btn } from "../Btn/Btn";
 
 const UserForm = () => {
   const [formData, setFormData] = useState({
@@ -23,12 +24,14 @@ const UserForm = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+
     if (Object.values(formData).some((field) => field === "")) {
       alert("Por favor, complete todos los campos.");
       return;
     }
+
     console.log("Datos del formulario:", formData);
     cleanInputs();
   };
@@ -123,7 +126,7 @@ const UserForm = () => {
           value={formData.checkInTime}
           onChange={handleChange}
         />
-        <div className={styles.submitContainer}></div>
+        <Btn text="Ingresar" isPrimary onClick={() => handleSubmit()} />
       </form>
     </div>
   );

@@ -64,14 +64,6 @@
   outline: none;
 }
 
-.submitContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 35px;
-}
-
 .submitInput {
   border-radius: 15px;
   padding: 5px;
