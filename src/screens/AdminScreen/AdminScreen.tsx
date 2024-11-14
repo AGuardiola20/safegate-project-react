@@ -8,6 +8,7 @@ import styles from "./AdminScreen.module.css";
 import { IoIosArrowDown } from "react-icons/io";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { Logout } from "../../components/Logout/Logout";
 
 // TODO: Cambiar esto por data funcional
 const GUEST: Guest[] = [
@@ -553,7 +554,7 @@ const GUEST: Guest[] = [
 ];
 
 export const AdminScreen = () => {
-  const { logout, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [guests, setGuests] = useState<Guest[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [showCalendar, setShowCalendar] = useState(false);
@@ -678,7 +679,7 @@ export const AdminScreen = () => {
         )}
       </div>
 
-      <button onClick={logout}>Cerrar sesión</button>
+      <Logout />
     </div>
   );
 };

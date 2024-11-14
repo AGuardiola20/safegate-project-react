@@ -10,15 +10,8 @@
   align-items: center;
   position: relative;
 }
-
 .userFormContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.logoutContainer {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
 }
