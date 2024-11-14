@@ -1,0 +1,93 @@
+.cardContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #4766ef;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.formTitle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.registerUserTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+}
+
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.Btn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.Btn:hover {
+  opacity: 0.8;
+}
+
+
+.isPrimary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.isPrimary:hover {
+  background-color: #0056b3;
+}
+
+
+.favoriteBtn {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.favoriteBtn .Btn {
+  background-color: #ff6347; 
+  color: white;
+  border: none;
+}
+
+.favoriteBtn .Btn:hover {
+  background-color: #b41910;
+}
+
+
+.favoriteBtn .isPrimary {
+  background-color: #28a745; 
+}
+
+.favoriteBtn .isPrimary:hover {
+  background-color: #218838; 
+}
+
+
+.inputFormat, .inputSelectionFormat {
+  margin-bottom: 16px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #595959;
+}
+
+.alert {
+  background-color: #f8d7da;
+  color: #b10617;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #f5c6cb;
+  margin-top: 10px;
+}
