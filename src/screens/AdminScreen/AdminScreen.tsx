@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { GuestCard } from "../../components/GuessCard/GuestCard";
-import { useAuth } from "../../hooks/useAuth";
 import { Guest } from "../../types/types";
 import LogoImg from "../../assets/imgs/logoTemp.png";
 import UserImg from "../../assets/imgs/UserImg.png";
@@ -554,7 +553,6 @@ const GUEST: Guest[] = [
 ];
 
 export const AdminScreen = () => {
-  const { isAuthenticated } = useAuth();
   const [guests, setGuests] = useState<Guest[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [showCalendar, setShowCalendar] = useState(false);
@@ -622,10 +620,6 @@ export const AdminScreen = () => {
       setShowCalendar(false);
     }
   };
-
-  if (!isAuthenticated) {
-    return <p>No tienes acceso a esta página.</p>;
-  }
 
   return (
     <div className={styles.container}>
