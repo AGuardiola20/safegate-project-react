@@ -3,11 +3,17 @@ import styles from "./LoginForm.module.css";
 
 type LoginFormProps = {
   loginFunction: (email: string, password: string) => void;
+  error?: string | null;
 };
 
-const LoginForm = ({ loginFunction }: LoginFormProps) => {
+const LoginForm = ({ loginFunction, error }: LoginFormProps) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,6 +22,7 @@ const LoginForm = ({ loginFunction }: LoginFormProps) => {
       alert("Por favor, completa todos los campos.");
       return;
     }
+    clearInputs();
 
     loginFunction(email, password);
   };
@@ -44,6 +51,7 @@ const LoginForm = ({ loginFunction }: LoginFormProps) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {error && <p className={styles.error}>{error}</p>}
         <div className={styles.submitContainer}>
           <input
             className={styles.submitInput}

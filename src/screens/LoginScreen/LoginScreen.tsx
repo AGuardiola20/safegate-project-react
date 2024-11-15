@@ -38,8 +38,7 @@ const LoginScreen: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <LoginForm loginFunction={handleLogin} />
-      {error && <div>{error}</div>}
+      <LoginForm loginFunction={handleLogin} error={error} />
     </div>
   );
 };
