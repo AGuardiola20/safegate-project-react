@@ -2,29 +2,29 @@ import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
 
 type LoginFormProps = {
-  loginFunction: (username: string) => void;
+  loginFunction: (email: string, password: string) => void;
+  error?: string | null;
 };
 
-const LoginForm = ({ loginFunction }: LoginFormProps) => {
-  const [userName, setUserName] = useState<string>("");
+const LoginForm = ({ loginFunction, error }: LoginFormProps) => {
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!userName || !password) {
+    if (!email || !password) {
       alert("Por favor, completa todos los campos.");
       return;
     }
+    clearInputs();
 
-    console.log("Username:", userName);
-    loginFunction(userName);
-    cleanInputs();
-  };
-
-  const cleanInputs = () => {
-    setUserName("");
-    setPassword("");
+    loginFunction(email, password);
   };
 
   return (
@@ -37,11 +37,11 @@ const LoginForm = ({ loginFunction }: LoginFormProps) => {
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <input
           className={styles.inputFormat}
-          placeholder="Nombre de Usuario"
-          type="text"
-          name="userName"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
+          placeholder="Correo Electrónico"
+          type="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className={styles.inputFormat}
@@ -51,6 +51,7 @@ const LoginForm = ({ loginFunction }: LoginFormProps) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {error && <p className={styles.error}>{error}</p>}
         <div className={styles.submitContainer}>
           <input
             className={styles.submitInput}
