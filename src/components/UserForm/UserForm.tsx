@@ -11,8 +11,10 @@ const getFavorites = (): Guest[] => {
 
 const addFavorite = (guest: Guest) => {
   const favorites = getFavorites();
-  favorites.push(guest);
-  localStorage.setItem("favorites", JSON.stringify(favorites));
+  if (!favorites.some((favorite) => favorite.idNumber === guest.idNumber)) {
+    favorites.push(guest);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }
 };
 
 const UserForm = () => {
@@ -59,7 +61,7 @@ const UserForm = () => {
       isMale: formData.genre === "Masculino",
       plate: formData.plate,
       idNumber: formData.id,
-      checkInTime: formData.checkInTime,
+      checkInTime: "",
       companions: Number(formData.companions),
       houseNumber: "A1",
       isConfirmed: false,
@@ -118,7 +120,7 @@ const UserForm = () => {
       <div className={styles.favoriteBtn}>
         <Btn text="Favoritos" isPrimary={false} onClick={openFav} />
       </div>
-      {error && <p className={styles.errorText}>{error}</p>}{" "}
+      {error && <p className={styles.errorText}>{error}</p>}
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <input
           className={styles.inputFormat}
