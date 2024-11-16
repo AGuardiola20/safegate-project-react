@@ -25,11 +25,6 @@ En los condominios, el proceso de permitir la entrada a visitantes suele ser eng
 - **Búsqueda y Filtrado**: Búsqueda rápida de invitados específicos mediante una barra de búsqueda.
 - **Cuentas Favoritas**: Los usuarios pueden agregar cuentas favoritas para facilitar el acceso frecuente.
 
-## Diseño de la Interfaz
-
-Diseño de Figma para una referencia visual de las pantallas y funcionalidades:
-[Diseño de Figma](https://www.figma.com/design/qJJzpEU6ESg451Bd9wYYL4/Wireframe-cliente?node-id=0-1&node-type=canvas&t=GTqTHkfJnCpE20hT-0)
-
 ## Instalación y Configuración
 
 Sigue estos pasos para clonar y ejecutar el proyecto en tu entorno local.
