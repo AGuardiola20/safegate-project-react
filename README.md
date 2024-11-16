@@ -53,3 +53,4 @@ npm run dev
 - **Vite**: Herramienta de desarrollo rápida y ligera para aplicaciones de frontend.
 - **TypeScript**: Para mejorar la calidad del código y la gestión de tipos en JavaScript.
 - **CSS Modules**: Modularización de estilos para componentes de React.
+- **Firebase Auth**: Para autenticación de usuarios.
