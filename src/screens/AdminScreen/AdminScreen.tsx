@@ -8,6 +8,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Logout } from "../../components/Logout/Logout";
+import useGuests from "../../hooks/useGuests";
 
 // TODO: Cambiar esto por data funcional
 const GUEST: Guest[] = [
@@ -559,6 +560,10 @@ export const AdminScreen = () => {
   const [selectedDate, setSelectedDate] = useState<Date | [Date, Date] | null>(
     new Date()
   );
+
+  const { guestList } = useGuests();
+
+  console.log(guestList);
 
   const formattedDate = selectedDate
     ? (Array.isArray(selectedDate)
