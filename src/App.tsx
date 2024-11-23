@@ -9,8 +9,6 @@ import { UserScreen } from "./screens/UserScreen/UserScreen";
 function App() {
   const [user, setUser] = useState<User | null>(null);
 
-  console.log(user);
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
