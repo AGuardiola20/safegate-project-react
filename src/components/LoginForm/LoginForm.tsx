@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./LoginForm.module.css";
 
 type LoginFormProps = {
@@ -6,25 +6,20 @@ type LoginFormProps = {
   error?: string | null;
 };
 
+type Inputs = {
+  userName: string;
+  passWord: string;
+};
+
 const LoginForm = ({ loginFunction, error }: LoginFormProps) => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
-  const clearInputs = () => {
-    setEmail("");
-    setPassword("");
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!email || !password) {
-      alert("Por favor, completa todos los campos.");
-      return;
-    }
-    clearInputs();
-
-    loginFunction(email, password);
+  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
+    loginFunction(data.userName, data.passWord);
   };
 
   return (
@@ -34,23 +29,35 @@ const LoginForm = ({ loginFunction, error }: LoginFormProps) => {
           <h1 className={styles.loginTitle}>Inicio de Sesion</h1>
         </div>
       </div>
-      <form className={styles.formContainer} onSubmit={handleSubmit}>
-        <input
-          className={styles.inputFormat}
-          placeholder="Correo Electrónico"
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          className={styles.inputFormat}
-          placeholder="Contraseña"
-          type="password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <input
+            className={styles.inputFormat}
+            placeholder="Correo Electrónico"
+            type="email"
+            id="userName"
+            {...register("userName", {
+              required: "*El Correo Electronico es Obligatorio",
+            })}
+          />
+          {errors.userName && (
+            <p className={styles.formularioError}>{errors.userName.message}</p>
+          )}
+        </div>
+
+        <div>
+          <input
+            className={styles.inputFormat}
+            placeholder="Contraseña"
+            type="password"
+            {...register("passWord", {
+              required: "*La Contraseña es requerida",
+            })}
+          />
+          {errors.passWord && (
+            <p className={styles.formularioError}>{errors.passWord.message}</p>
+          )}
+        </div>
         {error && <p className={styles.error}>{error}</p>}
         <div className={styles.submitContainer}>
           <input
