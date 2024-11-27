@@ -54,3 +54,4 @@ npm run dev
 - **TypeScript**: Para mejorar la calidad del código y la gestión de tipos en JavaScript.
 - **CSS Modules**: Modularización de estilos para componentes de React.
 - **Firebase Auth**: Para autenticación de usuarios.
+- **Firestore**: Herramienta utilizada como base de datos
