@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./UserForm.module.css";
 import Modal from "react-modal";
 import { Btn } from "../Btn/Btn";
@@ -17,194 +18,155 @@ const addFavorite = (guest: Guest) => {
   }
 };
 
-const UserForm = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    id: "",
-    age: "",
-    genre: "",
-    plate: "",
-    companions: "",
-    checkInTime: "",
-  });
+type FormInputs = {
+  firstName: string;
+  lastName: string;
+  id: string;
+  age: string;
+  genre: string;
+  plate: string;
+  companions: string;
+  checkInTime: string;
+};
 
+const UserForm = () => {
   const [favorites, setFavorites] = useState<Guest[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [error, setError] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm<FormInputs>();
 
   useEffect(() => {
     setFavorites(getFavorites());
   }, []);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-
-    if (Object.values(formData).some((field) => field === "")) {
-      setError("Por favor, complete todos los campos.");
-      return;
-    }
-
+  const onSubmit: SubmitHandler<FormInputs> = (data) => {
     const guest: Guest = {
-      name: `${formData.firstName} ${formData.lastName}`,
-      age: Number(formData.age),
-      isMale: formData.genre === "Masculino",
-      plate: formData.plate,
-      idNumber: formData.id,
-      checkInTime: "",
-      companions: Number(formData.companions),
+      name: `${data.firstName} ${data.lastName}`,
+      age: Number(data.age),
+      isMale: data.genre === "Masculino",
+      plate: data.plate,
+      idNumber: data.id,
+      checkInTime: data.checkInTime,
+      companions: Number(data.companions),
       houseNumber: "A1",
       isConfirmed: false,
     };
 
     addFavorite(guest);
     setFavorites(getFavorites());
-    cleanInputs();
+    reset(); // Clear the form
   };
 
-  const cleanInputs = () => {
-    setFormData({
-      firstName: "",
-      lastName: "",
-      id: "",
-      age: "",
-      genre: "",
-      plate: "",
-      companions: "",
-      checkInTime: "",
-    });
-    setError("");
-  };
-
-  const openFav = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeFav = () => {
-    setIsModalOpen(false);
-  };
+  const openFav = () => setIsModalOpen(true);
+  const closeFav = () => setIsModalOpen(false);
 
   const handleSelectFavorite = (guest: Guest) => {
-    setFormData({
-      firstName: guest.name.split(" ")[0],
-      lastName: guest.name.split(" ").slice(1).join(" "),
-      id: guest.idNumber,
-      age: guest.age ? guest.age.toString() : "",
-      genre: guest.isMale ? "Masculino" : "Femenino",
-      plate: guest.plate || "",
-      companions: guest.companions ? guest.companions.toString() : "",
-      checkInTime: guest.checkInTime || "",
-    });
+    setValue("firstName", guest.name.split(" ")[0]);
+    setValue("lastName", guest.name.split(" ").slice(1).join(" "));
+    setValue("id", guest.idNumber);
+    setValue("age", guest.age ? guest.age.toString() : "");
+    setValue("genre", guest.isMale ? "Masculino" : "Femenino");
+    setValue("plate", guest.plate || "");
+    setValue("companions", guest.companions ? guest.companions.toString() : "");
+    setValue("checkInTime", guest.checkInTime || "");
     closeFav();
   };
-
-  const hasFormData = Object.values(formData).some((field) => field !== "");
 
   return (
     <div className={styles.cardContainer}>
       <div>
-        <div className={styles.formTitle}>
-          <h1 className={styles.registerUserTitle}>Registro de Visitante</h1>
-        </div>
+        <h1 className={styles.registerUserTitle}>Registro de Visitante</h1>
       </div>
       <div className={styles.favoriteBtn}>
         <Btn text="Favoritos" isPrimary={false} onClick={openFav} />
       </div>
-      {error && <p className={styles.errorText}>{error}</p>}
-      <form className={styles.formContainer} onSubmit={handleSubmit}>
+      <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <input
           className={styles.inputFormat}
           placeholder="Nombre"
-          type="text"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
+          {...register("firstName", { required: "El nombre es requerido" })}
         />
+        {errors.firstName && (
+          <span className={styles.errorText}>{errors.firstName.message}</span>
+        )}
+
         <input
           className={styles.inputFormat}
           placeholder="Apellido"
-          type="text"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
+          {...register("lastName", { required: "El apellido es requerido" })}
         />
+        {errors.lastName && (
+          <span className={styles.errorText}>{errors.lastName.message}</span>
+        )}
+
         <input
           className={styles.inputFormat}
-          placeholder="Cedula"
-          type="number"
-          name="id"
-          title="Ingrese su numero de cedula sin guiones ej. 206980321"
-          value={formData.id}
-          onChange={handleChange}
+          placeholder="Cédula"
+          type="text"
+          {...register("id", { required: "La cédula es requerida" })}
         />
+        {errors.id && (
+          <span className={styles.errorText}>{errors.id.message}</span>
+        )}
+
         <input
           className={styles.inputFormat}
           placeholder="Edad"
           type="number"
-          name="age"
-          value={formData.age}
-          onChange={handleChange}
+          {...register("age", {
+            required: "La edad es requerida",
+            valueAsNumber: true,
+          })}
         />
+        {errors.age && (
+          <span className={styles.errorText}>{errors.age.message}</span>
+        )}
+
         <select
-          name="genre"
-          id="genre"
           className={styles.inputSelectionFormat}
-          value={formData.genre}
-          onChange={handleChange}
+          {...register("genre", { required: "El género es requerido" })}
         >
-          <option value="">Selecciona un Genero</option>
+          <option value="">Selecciona un Género</option>
           <option value="Masculino">Masculino</option>
           <option value="Femenino">Femenino</option>
           <option value="Otro">Otro</option>
         </select>
+        {errors.genre && (
+          <span className={styles.errorText}>{errors.genre.message}</span>
+        )}
+
         <input
           className={styles.inputFormat}
-          placeholder="Placa Vehiculo"
+          placeholder="Placa Vehículo"
           type="text"
-          name="plate"
-          value={formData.plate}
-          onChange={handleChange}
+          {...register("plate")}
         />
+
         <input
           className={styles.inputFormat}
-          placeholder="Cantidad Acompañantes"
+          placeholder="Cantidad de Acompañantes"
           type="number"
-          name="companions"
-          value={formData.companions}
-          onChange={handleChange}
+          {...register("companions", { valueAsNumber: true })}
         />
+
         <label htmlFor="checkInTime">Hora Ingreso</label>
         <input
           className={styles.inputFormat}
           type="time"
-          name="checkInTime"
-          value={formData.checkInTime}
-          onChange={handleChange}
+          {...register("checkInTime")}
         />
-        {hasFormData && (
-          <Btn
-            text="Eliminar Datos"
-            isPrimary
-            onClick={cleanInputs}
-            style={{ backgroundColor: "#f44336" }}
-          />
-        )}
-        <Btn text="Ingresar" isPrimary onClick={() => handleSubmit()} />
+
+        <Btn text="Ingresar" isPrimary type="submit" />
       </form>
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeFav}
-        contentLabel="Lista de Favoritos"
         className={styles.modalContent}
         overlayClassName={styles.modalOverlay}
         closeTimeoutMS={300}
