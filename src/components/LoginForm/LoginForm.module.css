@@ -72,7 +72,7 @@
 
 .formularioError {
   font-size: 0.85rem;
-  color: #d9534f;
-  margin-top: -10px;
+  color: var(--error-color);
+  margin-top: -5px;
   margin-bottom: 10px;
 }
