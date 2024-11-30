@@ -55,7 +55,16 @@ const UserForm = () => {
     setFavorites(getFavorites());
   }, []);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: {
+    firstName: string;
+    lastName: string;
+    id: string;
+    age: string;
+    genre: string;
+    plate: string;
+    companions: string;
+    checkInTime: string;
+  }) => {
     const guest: Guest = {
       name: `${data.firstName} ${data.lastName}`,
       age: Number(data.age),
@@ -70,7 +79,7 @@ const UserForm = () => {
 
     addFavorite(guest);
     setFavorites(getFavorites());
-    reset(); // Clear form after submission
+    reset();
   };
 
   const handleSelectFavorite = (guest: Guest) => {
@@ -138,14 +147,19 @@ const UserForm = () => {
           placeholder="Edad"
           type="number"
         />
+        {errors.age && <p className={styles.errorText}>{errors.age.message}</p>}
 
         <input
           className={styles.inputFormat}
           placeholder="Placa Vehículo"
           type="text"
-          {...register("plate")}
+          {...register("plate", {
+            required: "La placa es obligatoria",
+          })}
         />
-        {errors.age && <p className={styles.errorText}>{errors.age.message}</p>}
+        {errors.plate && (
+          <p className={styles.errorText}>{errors.plate.message}</p>
+        )}
 
         <select
           className={styles.inputSelectionFormat}
@@ -160,11 +174,17 @@ const UserForm = () => {
         )}
 
         <input
-          {...register("companions", { valueAsNumber: true })}
+          {...register("companions", {
+            valueAsNumber: true,
+            required: "Los acompañantes son obligatorios",
+          })}
           className={styles.inputFormat}
           placeholder="Cantidad Acompañantes"
           type="number"
         />
+        {errors.companions && (
+          <span className={styles.errorText}>{errors.companions.message}</span>
+        )}
 
         <input
           {...register("checkInTime")}
