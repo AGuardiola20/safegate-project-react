@@ -113,7 +113,7 @@ const UserForm = () => {
           placeholder="Nombre"
         />
         {errors.firstName && (
-          <p className={styles.errorText}>{errors.firstName.message}</p>
+          <p className={styles.errorForm}>{errors.firstName.message}</p>
         )}
 
         <input
@@ -122,7 +122,7 @@ const UserForm = () => {
           placeholder="Apellido"
         />
         {errors.lastName && (
-          <p className={styles.errorText}>{errors.lastName.message}</p>
+          <p className={styles.errorForm}>{errors.lastName.message}</p>
         )}
 
         <input
@@ -136,7 +136,7 @@ const UserForm = () => {
           className={styles.inputFormat}
           placeholder="Cédula"
         />
-        {errors.id && <p className={styles.errorText}>{errors.id.message}</p>}
+        {errors.id && <p className={styles.errorForm}>{errors.id.message}</p>}
 
         <input
           {...register("age", {
@@ -147,7 +147,7 @@ const UserForm = () => {
           placeholder="Edad"
           type="number"
         />
-        {errors.age && <p className={styles.errorText}>{errors.age.message}</p>}
+        {errors.age && <p className={styles.errorForm}>{errors.age.message}</p>}
 
         <input
           className={styles.inputFormat}
@@ -158,7 +158,7 @@ const UserForm = () => {
           })}
         />
         {errors.plate && (
-          <p className={styles.errorText}>{errors.plate.message}</p>
+          <p className={styles.errorForm}>{errors.plate.message}</p>
         )}
 
         <select
@@ -170,7 +170,7 @@ const UserForm = () => {
           <option value="Femenino">Femenino</option>
         </select>
         {errors.genre && (
-          <span className={styles.errorText}>{errors.genre.message}</span>
+          <span className={styles.errorForm}>{errors.genre.message}</span>
         )}
 
         <input
@@ -183,7 +183,7 @@ const UserForm = () => {
           type="number"
         />
         {errors.companions && (
-          <span className={styles.errorText}>{errors.companions.message}</span>
+          <span className={styles.errorForm}>{errors.companions.message}</span>
         )}
 
         <input
