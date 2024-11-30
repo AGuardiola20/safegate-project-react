@@ -34,6 +34,7 @@ const UserForm = () => {
     lastName: string;
     id: string;
     age: string;
+    genre: string;
     plate: string;
     companions: string;
     checkInTime: string;
@@ -43,6 +44,7 @@ const UserForm = () => {
       lastName: "",
       id: "",
       age: "",
+      genre: "",
       plate: "",
       companions: "",
       checkInTime: "",
@@ -68,13 +70,15 @@ const UserForm = () => {
 
     addFavorite(guest);
     setFavorites(getFavorites());
-    reset();
+    reset(); // Clear form after submission
+  };
 
   const handleSelectFavorite = (guest: Guest) => {
     setValue("firstName", guest.name.split(" ")[0]);
     setValue("lastName", guest.name.split(" ").slice(1).join(" "));
     setValue("id", guest.idNumber);
     setValue("age", guest.age?.toString() || "");
+    setValue("genre", guest.isMale ? "Masculino" : "Femenino");
     setValue("plate", guest.plate || "");
     setValue("companions", guest.companions?.toString() || "");
     setValue("checkInTime", guest.checkInTime || "");
@@ -83,7 +87,9 @@ const UserForm = () => {
 
   return (
     <div className={styles.cardContainer}>
-      <h1 className={styles.registerUserTitle}>Registro de Visitante</h1>
+      <div className={styles.formTitle}>
+        <h1 className={styles.registerUserTitle}>Registro de Visitante</h1>
+      </div>
       <div className={styles.favoriteBtn}>
         <Btn
           text="Favoritos"
@@ -132,7 +138,26 @@ const UserForm = () => {
           placeholder="Edad"
           type="number"
         />
+
+        <input
+          className={styles.inputFormat}
+          placeholder="Placa Vehículo"
+          type="text"
+          {...register("plate")}
+        />
         {errors.age && <p className={styles.errorText}>{errors.age.message}</p>}
+
+        <select
+          className={styles.inputSelectionFormat}
+          {...register("genre", { required: "Género es requerido" })}
+        >
+          <option value="">Selecciona un Género</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+        </select>
+        {errors.genre && (
+          <span className={styles.errorText}>{errors.genre.message}</span>
+        )}
 
         <input
           {...register("companions", { valueAsNumber: true })}
@@ -148,10 +173,8 @@ const UserForm = () => {
           type="time"
         />
 
-    
         <Btn text="Ingresar" isPrimary type="submit" />
 
-    
         {isDirty && (
           <Btn
             text="Eliminar Datos"
@@ -162,7 +185,6 @@ const UserForm = () => {
         )}
       </form>
 
- 
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
