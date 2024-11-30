@@ -41,7 +41,7 @@ const LoginForm = ({ loginFunction, error }: LoginFormProps) => {
             })}
           />
           {errors.userName && (
-            <p className={styles.formularioError}>{errors.userName.message}</p>
+            <p className={styles.errorForm}>{errors.userName.message}</p>
           )}
         </div>
 
@@ -55,7 +55,7 @@ const LoginForm = ({ loginFunction, error }: LoginFormProps) => {
             })}
           />
           {errors.passWord && (
-            <p className={styles.formularioError}>{errors.passWord.message}</p>
+            <p className={styles.errorForm}>{errors.passWord.message}</p>
           )}
         </div>
         {error && <p className={styles.error}>{error}</p>}
