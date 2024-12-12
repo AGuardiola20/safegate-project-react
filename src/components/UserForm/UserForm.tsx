@@ -191,7 +191,7 @@ const UserForm = () => {
           {...register("checkInTime")}
           className={styles.inputFormat}
           placeholder="Hora de Ingreso"
-          type="time"
+          type="datetime-local"
         />
 
         <Btn text="Ingresar" isPrimary type="submit" />

@@ -31,17 +31,37 @@ export const AdminScreen = () => {
     : "";
 
   useEffect(() => {
-    const filteredGuests = guestList.filter((guest) => {
-      const guestDate = new Date(guest.checkInTime).toLocaleDateString(
-        "es-ES",
-        {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
+    const parseDate = (dateString: string): Date | null => {
+      try {
+        if (dateString.includes("T")) {
+          const parsedDate = new Date(dateString);
+          if (!isNaN(parsedDate.getTime())) return parsedDate;
         }
-      );
+        const adjustedDateString = dateString.replace(" ", "T") + "Z";
+        const parsedDate = new Date(adjustedDateString);
+        if (!isNaN(parsedDate.getTime())) return parsedDate;
+
+        console.error("Formato de fecha inválido:", dateString);
+        return null;
+      } catch (error) {
+        console.error("Error al parsear la fecha:", dateString, error);
+        return null;
+      }
+    };
+
+    const filteredGuests = guestList.filter((guest) => {
+      const parsedDate = parseDate(guest.checkInTime);
+      if (!parsedDate) return false;
+
+      const guestDate = parsedDate.toLocaleDateString("es-ES", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
+
       return guestDate === formattedDate;
     });
+
     setGuests(filteredGuests);
   }, [formattedDate, guestList]);
 
