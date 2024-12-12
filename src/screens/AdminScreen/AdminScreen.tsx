@@ -69,7 +69,7 @@ export const AdminScreen = () => {
     setShowCalendar((prev) => !prev);
   };
 
-  const handleDateChange = (date: Date | [Date, Date] | null) => {
+  const handleDateChange = (date: any) => {
     setSelectedDate(date);
     setShowCalendar(false);
   };
