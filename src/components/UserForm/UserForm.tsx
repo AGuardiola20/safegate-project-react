@@ -4,8 +4,8 @@ import Modal from "react-modal";
 import styles from "./UserForm.module.css";
 import { Btn } from "../Btn/Btn";
 import { Guest } from "../../types/types";
+import useAddGuest from "../../hooks/useAddGuest";
 
-// Utility functions to manage favorites
 const getFavorites = (): Guest[] => {
   const favorites = localStorage.getItem("favorites");
   return favorites ? JSON.parse(favorites) : [];
@@ -22,6 +22,7 @@ const addFavorite = (guest: Guest) => {
 const UserForm = () => {
   const [favorites, setFavorites] = useState<Guest[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { addGuest } = useAddGuest();
 
   const {
     register,
@@ -76,7 +77,7 @@ const UserForm = () => {
       houseNumber: "A1",
       isConfirmed: false,
     };
-
+    addGuest(guest);
     addFavorite(guest);
     setFavorites(getFavorites());
     reset();
