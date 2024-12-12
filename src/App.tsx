@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-import { auth } from "./firebaseConfig";
-import { onAuthStateChanged, User } from "firebase/auth";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import { AdminScreen } from "./screens/AdminScreen/AdminScreen";
 import { UserScreen } from "./screens/UserScreen/UserScreen";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store/store";
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const currentRole = useSelector((state: RootState) => state.role.currentRole);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-
-    return () => unsubscribe();
-  }, []);
+    if (currentRole === "admin") {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+  }, [currentRole]);
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LoginScreen />} />
         <Route
-          path="/admin"
-          element={user ? <AdminScreen /> : <LoginScreen />}
+          path="/room"
+          element={isAdmin ? <AdminScreen /> : <UserScreen />}
         />
-        <Route path="/user" element={user ? <UserScreen /> : <LoginScreen />} />
       </Routes>
     </Router>
   );
